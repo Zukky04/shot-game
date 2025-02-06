@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+let defeatedEnemiesCount = 0;
 <head>
   <meta charset="UTF-8">
   <title>ロケットゲーム</title>
@@ -99,16 +100,17 @@
     }
 
     // 初期化関数
-    function initGame() {
-      rocket = createRocket();
-      missiles = [];
-      enemies = [];
-      enemySpawnedCount = 0;
-      lastEnemySpawnTime = performance.now();
-      gameStartTime = performance.now();
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      gameLoop();
-    }
+function initGame() {
+  rocket = createRocket();
+  missiles = [];
+  enemies = [];
+  defeatedEnemiesCount = 0; // カウンターをリセット
+  enemySpawnedCount = 0;
+  lastEnemySpawnTime = performance.now();
+  gameStartTime = performance.now();
+  if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  gameLoop();
+}
 
     // 衝突判定（円と円の判定）
     function isColliding(obj1, obj2) {
