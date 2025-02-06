@@ -170,19 +170,19 @@ function initGame() {
       });
 
       // 衝突判定：ミサイルと敵
-      for (let i = missiles.length - 1; i >= 0; i--) {
-        const missile = missiles[i];
-        for (let j = enemies.length - 1; j >= 0; j--) {
-          const enemy = enemies[j];
-          // 衝突判定のため、ミサイルと敵は円で判定（ミサイルのradiusは5、敵のradiusは15）
-          if (isColliding({ x: missile.x, y: missile.y, radius: missile.radius }, enemy)) {
-            // 衝突したら両方削除
-            missiles.splice(i, 1);
-            enemies.splice(j, 1);
-            break;
-          }
-        }
-      }
+      // 衝突判定：ミサイルと敵
+for (let i = missiles.length - 1; i >= 0; i--) {
+  const missile = missiles[i];
+  for (let j = enemies.length - 1; j >= 0; j--) {
+    const enemy = enemies[j];
+    if (isColliding({ x: missile.x, y: missile.y, radius: missile.radius }, enemy)) {
+      defeatedEnemiesCount++;  // 敵を倒したのでカウントアップ
+      missiles.splice(i, 1);
+      enemies.splice(j, 1);
+      break;
+    }
+  }
+}
 
       // 画面外のミサイルを削除
       missiles = missiles.filter(missile => missile.x > 0 && missile.x < canvas.width && missile.y > 0 && missile.y < canvas.height);
